@@ -28,16 +28,38 @@ function setup()
   COLOR_CASILLERO_MARCADO = color("#278EF2");
 
   // Modificar/completar
+  ponerMinasTablero(); 
 }
 
 
 function draw() {
   if (hizoClick == true)
   {
-    pintarCasillero(columnaPresionada, filaPresionada, COLOR_CASILLERO_SIN_MINA); //pinta el casillero clickeado. Modificar/completar
+    if (mouseButton == LEFT)
+    {
+      if (tieneMinaCasillero(columnaPresionada, filaPresionada))
+      {
+        //toca una mina
+        pintarCasillero(columnaPresionada, filaPresionada, COLOR_CASILLERO_CON_MINA);
+        perder(); 
+      }
+      else
+      {
+        //no toca una mina
+        pintarCasillero(columnaPresionada, filaPresionada, COLOR_CASILLERO_SIN_MINA);
+        //descubrirCasillero();
+      }
+    }
+    else
+    {
+        pintarCasillero(columnaPresionada, filaPresionada, COLOR_CASILLERO_MARCADO);
+    }
 
+    if (casillerosSinDescubrir == 0)
+    {
+      ganoElJuego();
+    }
 
-    
     hizoClick = false;  //Indico que ya "procesé" el click del usuario. NO modificar
   }
 }
@@ -49,13 +71,15 @@ function ganoElJuego()
 }
 
 function ponerMinasTablero()
-{
-  // Modificar/completar
+{ 
+  //ciclo
+  //getRandomInt(11)
+  ponerMinaCasillero(0, 0)
 }
 
 function mostrarMinas()
 {
-  // Modificar/completar
+  // Modificar/completa
 }
 
 function contarMinasAlrededor(columna, fila)
