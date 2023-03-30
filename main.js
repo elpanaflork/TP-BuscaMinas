@@ -16,7 +16,6 @@ var hizoClick = false;
 //Otras variables
 var casillerosSinDescubrir;
 
-
 function setup()
 {
   createCanvas(500, 500);   //crea un lienzo o panel donde estará el juego. El primer parámetro es el ancho y el segundo el alto del lienzo.
@@ -29,12 +28,14 @@ function setup()
 
   // Modificar/completar
   ponerMinasTablero(); 
+  casillerosSinDescubrir = FILAS * COLUMNAS;
 }
 
 
 function draw() {
   if (hizoClick == true)
   {
+
     if (mouseButton == LEFT)
     {
       if (tieneMinaCasillero(columnaPresionada, filaPresionada))
@@ -47,7 +48,8 @@ function draw() {
       {
         //no toca una mina
         pintarCasillero(columnaPresionada, filaPresionada, COLOR_CASILLERO_SIN_MINA);
-        //descubrirCasillero();
+        descubrirCasillero(columnaPresionada, filaPresionada);
+        
       }
     }
     else
@@ -55,7 +57,7 @@ function draw() {
         pintarCasillero(columnaPresionada, filaPresionada, COLOR_CASILLERO_MARCADO);
     }
 
-    if (casillerosSinDescubrir == 0)
+    if (casillerosSinDescubrir == CANTIDAD_MINAS)
     {
       ganoElJuego();
     }
@@ -67,14 +69,22 @@ function draw() {
 
 function ganoElJuego()
 {
-  return false;   //Esto hace que NUNCA gane el juego. Modificar/completar
+  console.log("gg");
+  ganar();
+  return true;   //Esto hace que NUNCA gane el juego. Modificar/completar
 }
 
 function ponerMinasTablero()
 { 
-  //ciclo
-  //getRandomInt(11)
-  ponerMinaCasillero(0, 0)
+  //ciclo for 20
+  for (let contador = 0; contador < CANTIDAD_MINAS; contador++)
+{
+  //las instrucciones que ponga acá se repetirán 20 veces
+  numAleatorioFila = floor(random(0, 10)); //del 0 al 9
+  numAleatorioColumna = floor(random(0, 10));
+  ponerMinaCasillero(numAleatorioColumna, numAleatorioFila);
+}
+  
 }
 
 function mostrarMinas()
