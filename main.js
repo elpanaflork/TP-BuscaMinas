@@ -42,7 +42,8 @@ function draw() {
       {
         //toca una mina
         pintarCasillero(columnaPresionada, filaPresionada, COLOR_CASILLERO_CON_MINA);
-        perder(); 
+        perder();
+       
       }
       else
       {
@@ -83,14 +84,22 @@ function ponerMinasTablero()
   numAleatorioFila = floor(random(0, 10)); //del 0 al 9
   numAleatorioColumna = floor(random(0, 10));
   ponerMinaCasillero(numAleatorioColumna, numAleatorioFila);
+  console.log(numAleatorioColumna, numAleatorioFila);
 }
-  
+
 }
 
 function mostrarMinas()
 {
-  // Modificar/completa
+  for(var contC = 0; contC < COLUMNAS; contC++){
+    for(var contF = 0; contF < FILAS; contF++){
+      if (tieneMinaCasillero(contC, contF)){
+        pintarCasillero(contC, contF, COLOR_CASILLERO_CON_MINA);
+      }
+    }
+  }
 }
+
 
 function contarMinasAlrededor(columna, fila)
 {
