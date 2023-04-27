@@ -72,21 +72,27 @@ function ganoElJuego()
 {
   console.log("gg");
   ganar();
-  return true;   //Esto hace que NUNCA gane el juego. Modificar/completar
+  return true;  
 }
 
 function ponerMinasTablero()
-{ 
-  //ciclo for 20
-  for (let contador = 0; contador < CANTIDAD_MINAS; contador++)
 {
-  //las instrucciones que ponga acá se repetirán 20 veces
-  numAleatorioFila = floor(random(0, 10)); //del 0 al 9
-  numAleatorioColumna = floor(random(0, 10));
-  ponerMinaCasillero(numAleatorioColumna, numAleatorioFila);
-  console.log(numAleatorioColumna, numAleatorioFila);
-}
-
+  for (let contador = 0; contador < CANTIDAD_MINAS; contador++)
+  {
+    var columnamina = floor(random(0, COLUMNAS));
+    var filamina = floor(random(0, FILAS));
+    if(tieneMinaCasillero(columnamina, filamina))
+    {
+      //esto se ejecuta si la columna 4, fila 5 tiene una mina
+      contador=contador-1
+    }
+    else
+    {
+      //esto se ejecuta si la columna 4, fila 5 NO tiene una mina
+      console.log(columnamina+" , "+filamina);
+      ponerMinaCasillero(columnamina,filamina);
+    }
+  }
 }
 
 function mostrarMinas()
@@ -103,5 +109,5 @@ function mostrarMinas()
 
 function contarMinasAlrededor(columna, fila)
 {
-  return 9;   //Esto hace que SIEMPRE cuente 9 minas alrededor. Modificar/completar
+ 
 }
