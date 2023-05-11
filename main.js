@@ -109,5 +109,38 @@ function mostrarMinas()
 
 function contarMinasAlrededor(columna, fila)
 {
- 
+ let contMinas = 0;
+  if(tieneMinaCasillero(columna-1, fila-1))
+  {
+    contMinas++;
+  }
+  if(tieneMinaCasillero(columna, fila-1))
+  {
+    contMinas++;
+  }
+  if(tieneMinaCasillero(columna+1, fila-1))
+  {
+    contMinas++;
+  }
+  if(tieneMinaCasillero(columna+1, fila))
+  {
+    contMinas++;
+  }
+  if(tieneMinaCasillero(columna+1, fila+1))
+  {
+    contMinas++;
+  }
+  if(tieneMinaCasillero(columna, fila+1))
+  {
+    contMinas++;
+  }
+  if(tieneMinaCasillero(columna-1, fila+1))
+  {
+    contMinas++;
+  }
+  if(tieneMinaCasillero(columna-1, fila))
+  {
+    contMinas++;
+  }
+  return contMinas;
 }
